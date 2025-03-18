@@ -1,0 +1,69 @@
+---
+pagination:
+  data: collections.galleries
+  size: 1
+  alias: gallery
+permalink: "galleries/{{ gallery.folder }}/index.html"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ gallery.folder | upper }} Gallery</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
+</head>
+<body id="gallery-page">
+  {% include "navbar.njk" %}
+
+  <!-- Hero Section with the first image as background -->
+  {% set images = gallery.folder | getImagesFromFolder %}
+  <div class="hero-section" style="background-image: url('/images/{{ gallery.folder }}/{{ images[0] }}');">
+    <div class="overlay"></div> <!-- Add this div for the overlay -->
+    <div class="hero-content">
+      <h1>{{ gallery.folder }}</h1>
+      <a href="#gallery-content" class="view-gallery-button">VIEW GALLERY</a>
+    </div>
+  </div>
+
+  <!-- Gallery Section -->
+  <div class="gallery" id="gallery-content">
+    {% for image in images %}
+      <div class="gallery-item">
+        {% set imageName = image.split('.') %}
+        {% set imageName = imageName[0] %}
+        <a href="/images/{{ gallery.folder }}/{{ image }}" data-fancybox="{{ gallery.folder }}" class="fancybox">
+          <img class="gallery-image" src="/images/{{ gallery.folder }}/{{ image }}" alt="{{ imageName | capitalize }}">
+          {# {% set imagePath = '/images/' ~ folder ~ '/' ~ images[0] %} #}
+          {# <img src="{% getUrl imagePath | resize({ height: 400, width: 300 }) | jpeg %}" alt="Preview of {{ folder }} album - {{ imageName | capitalize }}"> #}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+
+  {% include "footer.njk" %}
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+  <script>
+  Fancybox.bind('[data-fancybox]', {
+    // Enable toolbar with download button
+    Toolbar: {
+      display: [
+        { id: "zoom", position: "right" },
+        { id: "download", position: "right" }, // Built-in download button
+        { id: "close", position: "right" }
+      ],
+    },
+    // Optional: other configurations
+    afterShow: (fancybox, slide) => {
+      // Any additional customizations can go here
+    }
+  });
+</script>
+
+</body>
+
+</html>
