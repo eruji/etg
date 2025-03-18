@@ -1,7 +1,6 @@
 {
   "name": "dynamic.image.gallery",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,5 +13,6 @@
     "@codestitchofficial/eleventy-plugin-sharp-images": "^1.0.7",
     "archiver": "^7.0.1",
     "express": "^4.21.1"
-  }
+  },
+  "description": ""
 }
