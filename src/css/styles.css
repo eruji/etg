@@ -126,6 +126,17 @@ body {
   transition: background 0.3s; /* Smooth transition for hover */
 }
 
+#gallery-page .download-button {
+  margin-top: 80px; /* Increase space between text and button */
+  margin-bottom: 80px;
+  padding: 10px 20px; /* Button padding */
+  border: 2px solid; /* White border */
+  color: black; /* Button text color */
+  background: transparent; /* Clear background */
+  text-decoration: none; /* No underline */
+  transition: background 0.3s; /* Smooth transition for hover */
+}
+
 
 /* Fade-in animation for the hero section */
 @keyframes fadeIn {
@@ -219,3 +230,4 @@ body {
 html {
   scroll-behavior: smooth; /* Smooth scrolling for anchor links */
 }
+
