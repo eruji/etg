@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const archiver = require("archiver");
 
-const galleriesDir = "./src/images"; // Adjust this to match your image folder
+const galleriesDir = "./src/images"; // Adjust based on your project
 const outputDir = "./public/downloads";
 
 // Ensure output directory exists
@@ -19,11 +19,11 @@ fs.readdirSync(galleriesDir).forEach((gallery) => {
     const archive = archiver("zip", { zlib: { level: 9 } });
 
     output.on("close", () => {
-      console.log(`${gallery}.zip created (${archive.pointer()} total bytes)`);
+      console.log(`${gallery}.zip created (${archive.pointer()} bytes)`);
     });
 
     archive.on("error", (err) => {
-      throw err;
+      console.error(`Error creating ${gallery}.zip:`, err);
     });
 
     archive.pipe(output);
