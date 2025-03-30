@@ -18,15 +18,16 @@ permalink: "galleries/{{ gallery.folder }}/index.html"
 <body id="gallery-page">
   {% include "navbar.njk" %}
 
-  <!-- Hero Section with the first image as background -->
-  {% set images = gallery.folder | getImagesFromFolder %}
-  <div class="hero-section" style="background-image: url('/images/{{ gallery.folder }}/{{ images[0] }}');">
-    <div class="overlay"></div> <!-- Add this div for the overlay -->
-    <div class="hero-content">
-      <h1>{{ gallery.folder }}</h1>
-      <a href="#gallery-content" class="view-gallery-button">VIEW GALLERY</a>
-    </div>
+<!-- Hero Section with the first image as background -->
+{% set images = gallery.folder | getImagesFromFolder %}
+<div class="hero-section" style="background-image: url('/images/{{ gallery.folder }}/{{ images[0] }}');">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>{{ gallery.folder }}</h1>
+    <a href="#gallery-content" class="view-gallery-button">VIEW GALLERY</a>
   </div>
+</div>
+
 
   <!-- Gallery Section -->
   <div class="gallery" id="gallery-content">
@@ -43,6 +44,12 @@ permalink: "galleries/{{ gallery.folder }}/index.html"
     {% endfor %}
   </div>
 
+
+
+  <div class="gallery">
+    <a href="/downloads/{{ gallery.folder }}.zip" CLASS="download-button">DOWNLOAD ALL</a>
+  </div>
+  
 
   {% include "footer.njk" %}
 
